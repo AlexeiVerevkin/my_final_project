@@ -15,7 +15,7 @@ struct tNode
 	Node * next;
 };
 
-void append (Lex * plex, int token, char * data)
+void append(Lex * plex, int token, char * data) /*function*/
 {
 	if (plex != NULL)
 	{
@@ -75,8 +75,9 @@ Lex * create_Lex (char * input)
 			{
 				str[i] = c;
 				c = *(input++);
+				i++;
 			}
-			append(new_one, NUM, str);
+			append(new_one, NUM, strdup(str));
 		}
 		else
 		{
@@ -88,14 +89,16 @@ Lex * create_Lex (char * input)
 				{
 					str[i] = c;
 					c = *(input++);
+					i++;
 				}
-				append(new_one, ID, str);
+				append(new_one, ID, strdup(str));
 			}
 			else
 			{
 				if (c == ':')
 				{
-					char k = *(input+1);
+					char k = *(input++); // Что делать!!!
+					printf("%c\n", k);
 					if (k == '=')
 					{
 						append(new_one, ASSIGN, NULL);
@@ -153,6 +156,10 @@ void destroy_Lex(Lex * plex)
 	{
 		Node * new_past = past;
 		past = past->next;
+		if (new_past->value != NULL)
+		{
+			free(new_past->value);
+		}
 		free(new_past);
 	}
 	free(plex);
