@@ -97,7 +97,7 @@ Lex * create_Lex (char * input)
 			{
 				if (c == ':')
 				{
-					char k = *(input++); // Что делать!!!
+					char k = *input;  /**/
 					printf("%c\n", k);
 					if (k == '=')
 					{
@@ -106,7 +106,7 @@ Lex * create_Lex (char * input)
 					}
 					else
 					{
-						append(new_one, (int)':', NULL);
+						append(new_one, ':', NULL);
 					}
 				}
 				else

@@ -6,7 +6,7 @@
 int main()
 {
 	int i = 1;
-	Lex * test = create_Lex("x := (23)");
+	Lex * test = create_Lex("x :=23");
 	Node * past = get_first(test);
 	
 	while (past != NULL)
